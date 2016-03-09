@@ -20,5 +20,8 @@
 require 'rails_helper'
 
 RSpec.describe Attendee, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "can upload attendee by CSV" do
+    Attendee.csv_upload(File.join("#{Rails.root}/spec/fixtures/", 'sample_data.csv'))
+    expect(Attendee.all.size).to eq(2405)
+  end
 end
