@@ -54,3 +54,5 @@ end
 gem 'annotate'
 
 gem 'will_paginate'
+
+gem 'postgres_ext'

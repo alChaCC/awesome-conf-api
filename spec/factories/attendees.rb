@@ -10,11 +10,11 @@
 #  company       :string
 #  importance    :integer
 #  bio           :text
-#  interests     :string
 #  thumbnail_url :string
 #  image_url     :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  interests     :text             is an Array
 #
 
 FactoryGirl.define do
