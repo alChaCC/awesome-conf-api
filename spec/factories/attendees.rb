@@ -21,7 +21,8 @@ FactoryGirl.define do
   factory :attendee do
     sequence(:first_name) { |n| "Aloha-#{n}" }
     sequence(:last_name)  { |n| "last_name-#{n}" }
-    sequence(:country)    { %w[Ireland USA UK].cycle }
+    sequence(:country, %w[Ireland USA UK].cycle)
+    sequence(:company, %w[Google Facebook Amazon].cycle)
     title 'CEO'
     sequence(:importance) { |n| Time.now.to_i + n }
     bio   'hi'

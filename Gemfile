@@ -52,3 +52,5 @@ end
 
 # show db schema
 gem 'annotate'
+
+gem 'will_paginate'
