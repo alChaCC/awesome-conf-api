@@ -26,11 +26,12 @@ class Attendee < ActiveRecord::Base
       rows  = []
       CSV.parse(File.read(file_path), headers: true, header_converters: lambda { |s| s.squish }) {|r| rows << r.to_hash}
       rows.each_with_index do |row, index|
+        row_id = row['id']
         a = Attendee.new(row.reject!{|k| k == 'id'})
         if a.save
-          return_h['success'] << row['id']
+          return_h['success'] << row_id
         else
-          return_h['failure'] << "#{row['id']}-#{a.errors.full_messages}"
+          return_h['failure'] << "#{row_id}-#{a.errors.full_messages}"
         end
       end
       return_h

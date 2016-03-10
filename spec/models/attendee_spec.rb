@@ -21,7 +21,8 @@ require 'rails_helper'
 
 RSpec.describe Attendee, type: :model do
   it "can upload attendee by CSV" do
-    Attendee.csv_upload(File.join("#{Rails.root}/spec/fixtures/", 'sample_data.csv'))
+    upload_result = Attendee.csv_upload(File.join("#{Rails.root}/spec/fixtures/", 'sample_data.csv'))
     expect(Attendee.all.size).to eq(2405)
+    expect(upload_result['success']).to include("9895")
   end
 end
