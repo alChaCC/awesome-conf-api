@@ -10,11 +10,11 @@
 #  company       :string
 #  importance    :integer
 #  bio           :text
-#  interests     :string
 #  thumbnail_url :string
 #  image_url     :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  interests     :text             is an Array
 #
 
 class Attendee < ActiveRecord::Base
@@ -29,6 +29,8 @@ class Attendee < ActiveRecord::Base
       CSV.parse(File.read(file_path), headers: true, header_converters: lambda { |s| s.squish }) {|r| rows << r.to_hash}
       rows.each_with_index do |row, index|
         row_id = row['id']
+        interests_array = row['interests'].gsub(/([{}])/,'').split(',')
+        row['interests'] = interests_array
         a = Attendee.new(row.reject!{|k| k == 'id'})
         if a.save
           return_h['success'] << row_id
@@ -37,6 +39,12 @@ class Attendee < ActiveRecord::Base
         end
       end
       return_h
+    end
+
+    def find_related_people(interest)
+      related     = Attendee.where.contains(interests: [interest])
+      non_related = Attendee.where.not('interests && ARRAY[?]', interest)
+      [related, non_related]
     end
   end
 end

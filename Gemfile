@@ -52,3 +52,7 @@ end
 
 # show db schema
 gem 'annotate'
+
+gem 'will_paginate'
+
+gem 'postgres_ext'
