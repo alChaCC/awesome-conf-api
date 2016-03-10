@@ -18,6 +18,8 @@
 #
 
 class Attendee < ActiveRecord::Base
+  default_scope { order('importance DESC') }
+
   class << self
     def csv_upload(file_path)
       return_h = {}

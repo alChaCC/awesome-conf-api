@@ -25,4 +25,11 @@ RSpec.describe Attendee, type: :model do
     expect(Attendee.all.size).to eq(2405)
     expect(upload_result['success']).to include("9895")
   end
+
+  it "should order by importance" do
+    a1 = create(:attendee)
+    a2 = create(:attendee)
+    a3 = create(:attendee, importance: 1)
+    expect(Attendee.all.map(&:id)).to eq([a2.id, a1.id, a3.id])
+  end
 end
