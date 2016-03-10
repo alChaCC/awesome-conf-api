@@ -50,3 +50,5 @@ group :development do
   gem 'spring'
 end
 
+# show db schema
+gem 'annotate'
