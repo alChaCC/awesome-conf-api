@@ -56,3 +56,5 @@ gem 'annotate'
 gem 'will_paginate'
 
 gem 'postgres_ext'
+
+gem 'rack-cors', require: 'rack/cors'
