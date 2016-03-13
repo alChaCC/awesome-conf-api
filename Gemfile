@@ -50,3 +50,11 @@ group :development do
   gem 'spring'
 end
 
+# show db schema
+gem 'annotate'
+
+gem 'will_paginate'
+
+gem 'postgres_ext'
+
+gem 'rack-cors', require: 'rack/cors'
